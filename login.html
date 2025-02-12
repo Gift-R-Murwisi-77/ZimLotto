@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+</head>
+ <!-- Favicon -->
+ <link href="img/favicon.ico" rel="icon">
+
+ <!-- Google Web Fonts -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
+
+ <!-- Icon Font Stylesheet -->
+ <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+ <!-- Libraries Stylesheet -->
+ <link href="lib/animate/animate.min.css" rel="stylesheet">
+ <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+ <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+ <!-- Customized Bootstrap Stylesheet -->
+ <link href="css/bootstrap.min.css" rel="stylesheet">
+
+ <!-- Template Stylesheet -->
+ <link href="css/style.css" rel="stylesheet">
+<style>
+        .error {
+            color: red;
+            display: none; /* Hide the error message by default */
+        }
+        .strength {
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+    </style>
+    <script>
+        function validateForm(event) {
+            event.preventDefault(); // Prevent form submission
+            const userId = document.getElementById('userId').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error-message');
+            const passwordStrength = document.getElementById('password-strength');
+
+            // Reset error message
+            errorMessage.style.display = 'none';
+
+            // Simple validation
+            if (!userId || !password) {
+                errorMessage.style.display = 'block'; // Show error message
+                return;
+            }
+
+            // Check password strength (basic example)
+            const strength = checkPasswordStrength(password);
+            passwordStrength.textContent = `Password strength: ${strength}`;
+            passwordStrength.style.color = strength === 'Strong' ? 'green' : 'red';
+
+            // Here you would typically send the data to the server
+            console.log("User ID:", userId);
+            console.log("Password:", password);
+        }
+
+        function checkPasswordStrength(password) {
+            // Basic password strength checking
+            if (password.length < 6) return 'Weak';
+            if (password.match(/[A-Z]/) && password.match(/[0-9]/)) return 'Strong';
+            return 'Medium';
+        }
+    </script>
+</head>
+<body>
+    <div class="container-fluid bg-light overflow-hidden my-5 px-lg-0">
+        <div class="container quote px-lg-0">
+            <div class="row g-0 mx-lg-0">
+                <div class="col-lg-6 ps-lg-0" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute img-fluid w-100 h-100" src="img/R.jpg" style="object-fit: cover;" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 quote-text py-5 wow fadeIn" data-wow-delay="0.5s">
+                    <div class="p-lg-5 pe-lg-0">
+                        <div class="section-title text-start">
+                            <h1 class="display-5 mb-4">LOGIN</h1>
+                        </div>
+                        <p class="mb-4 pb-2">Please enter your credentials to log in.</p>
+                        <form onsubmit="validateForm(event)">
+                            <div class="row g-3">
+                                <div class="col-12 col-sm-6">
+                                    <input type="text" id="userId" class="form-control border-0" placeholder="Your ID" style="height: 55px;">
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    <input type="password" id="password" class="form-control border-0" placeholder="Your Password" style="height: 55px;">
+                                    <div id="password-strength" class="strength"></div>
+                                </div>
+                                <div class="col-12">
+                                    <div id="error-message" class="error">Please fill in all fields.</div>
+                                    <a href="home.html" class="btn btn-primary w-100 py-3" role="button">Submit</a>
+                                </div>
+                                <a href="signup.html"> Did not register?</a>       <a href="">Forgot Password?</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
